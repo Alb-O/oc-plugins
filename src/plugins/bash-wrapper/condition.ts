@@ -1,27 +1,59 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import os from "node:os";
 
 /**
  * Condition types for template selection.
  */
 export interface Condition {
-  /** Check if a file exists relative to project root */
+  /** Check if file exists (searches upward from project root) */
   file?: string;
-  /** Check if a command is available in PATH */
+  /** Check if command is available in PATH */
   command?: string;
 }
 
 /**
- * Check if a file exists relative to the given directory.
+ * Search for a file starting from baseDir and walking up to root.
+ * Returns the directory containing the file, or null if not found.
+ */
+async function findFileUpward(fileName: string, baseDir: string): Promise<string | null> {
+  let current = path.resolve(baseDir);
+  const root = path.parse(current).root;
+  const home = os.homedir();
+
+  while (current !== root && current !== home) {
+    const filePath = path.join(current, fileName);
+    try {
+      await fs.access(filePath);
+      return current;
+    } catch {
+      // Continue searching upward
+    }
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+
+  return null;
+}
+
+/**
+ * Check if a file exists, searching upward from baseDir.
  */
 async function checkFileExists(filePath: string, baseDir: string): Promise<boolean> {
-  const fullPath = path.isAbsolute(filePath) ? filePath : path.join(baseDir, filePath);
-  try {
-    await fs.access(fullPath);
-    return true;
-  } catch {
-    return false;
+  // Absolute paths are checked directly
+  if (path.isAbsolute(filePath)) {
+    try {
+      await fs.access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
   }
+
+  // Relative paths trigger upward search
+  const found = await findFileUpward(filePath, baseDir);
+  return found !== null;
 }
 
 /**
@@ -53,7 +85,6 @@ export async function evaluateCondition(
     return true;
   }
 
-  // Check file existence
   if (condition.file !== undefined) {
     const exists = await checkFileExists(condition.file, baseDir);
     if (!exists) {
@@ -61,7 +92,6 @@ export async function evaluateCondition(
     }
   }
 
-  // Check command availability
   if (condition.command !== undefined) {
     const exists = await checkCommandExists(condition.command);
     if (!exists) {
@@ -71,3 +101,9 @@ export async function evaluateCondition(
 
   return true;
 }
+
+/**
+ * Find a file searching upward from baseDir.
+ * Exported for use when the template needs the file's directory.
+ */
+export { findFileUpward };

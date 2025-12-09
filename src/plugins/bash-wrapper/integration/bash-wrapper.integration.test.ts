@@ -5,7 +5,7 @@ import path from "node:path";
 import os from "node:os";
 
 const OPENCODE_MODEL = "opencode/big-pickle";
-const TEST_TIMEOUT = 120_000; // 120 seconds for LLM responses
+const TEST_TIMEOUT = 10_000; // 10 seconds for LLM responses
 
 interface TestContext {
   testDir: string;

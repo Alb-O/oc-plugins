@@ -48,10 +48,16 @@ Use a chain of templates with conditions. The first matching template wins:
 
 | Condition | Description |
 |-----------|-------------|
-| `file` | Check if file exists relative to project root |
+| `file` | Check if file exists (searches upward from project root) |
 | `command` | Check if command is available in PATH |
 
 Conditions are AND'd together. A template without `when` always matches (use as final fallback).
+
+### File Search Behavior
+
+The `file` condition searches upward from the project root directory. This matches the behavior of tools like `nix develop` which look for `flake.nix` in parent directories.
+
+For example, if your project is at `/code/myproject` and `flake.nix` is at `/code/flake.nix`, the condition `{ "file": "flake.nix" }` will still match.
 
 ## Examples
 
