@@ -1,6 +1,17 @@
 import type { Plugin } from "@opencode-ai/plugin";
 import { loadConfig } from "../../lib/config";
 import { applyTemplate } from "./template";
+import { evaluateCondition, type Condition } from "./condition";
+
+/**
+ * A template rule with an optional condition.
+ */
+export interface TemplateRule {
+  /** Template string with ${command} placeholder */
+  template: string;
+  /** Optional condition - if specified, must pass for this template to be used */
+  when?: Condition;
+}
 
 /**
  * Configuration for the bash wrapper plugin.
@@ -9,22 +20,27 @@ import { applyTemplate } from "./template";
  *   - .opencode/bash-wrapper.json (project-local, takes priority)
  *   - ~/.config/opencode/bash-wrapper.json (global fallback)
  *
- * Example configs:
- *
- * For nix-shell (needs quoted command):
- * {
- *   "template": "nix-shell --run \"${command:quoted}\""
- * }
- *
- * For docker exec (raw command as args):
+ * Simple config (single template, always applies):
  * {
  *   "template": "docker exec -it mycontainer ${command}"
  * }
  *
- * For ssh (single-quoted to prevent remote expansion):
+ * Conditional config with fallback chain:
  * {
- *   "template": "ssh host '${command:single}'"
+ *   "templates": [
+ *     {
+ *       "template": "nix develop -c bash -c \"${command:quoted}\"",
+ *       "when": { "file": "flake.nix", "command": "nix" }
+ *     },
+ *     {
+ *       "template": "${command}"
+ *     }
+ *   ]
  * }
+ *
+ * Condition types:
+ *   - file: Check if file exists relative to project root
+ *   - command: Check if command is available in PATH
  *
  * Placeholders:
  *   ${command}        - raw command, no escaping
@@ -32,21 +48,60 @@ import { applyTemplate } from "./template";
  *   ${command:single} - escaped for single quotes (' becomes '\'')
  */
 export interface BashWrapperConfig {
-  /** Template string with ${command} placeholder */
+  /** Simple template (mutually exclusive with templates) */
   template?: string;
+  /** Template chain with conditions (first matching wins) */
+  templates?: TemplateRule[];
 }
 
 const CONFIG_FILE = "bash-wrapper.json";
+
+/**
+ * Select the first template whose condition passes.
+ */
+async function selectTemplate(
+  config: BashWrapperConfig,
+  baseDir: string
+): Promise<string | null> {
+  // Simple template mode
+  if (config.template) {
+    return config.template;
+  }
+
+  // Template chain mode
+  if (config.templates && config.templates.length > 0) {
+    for (const rule of config.templates) {
+      const matches = await evaluateCondition(rule.when, baseDir);
+      if (matches) {
+        return rule.template;
+      }
+    }
+  }
+
+  return null;
+}
 
 /**
  * Plugin that wraps all bash commands using a configurable template.
  */
 export const BashWrapperPlugin: Plugin = async (input) => {
   const config = await loadConfig<BashWrapperConfig>(CONFIG_FILE, input.directory);
-  const template = config?.template;
 
-  // Skip if no template configured
+  // Skip if no config
+  if (!config) {
+    return {};
+  }
+
+  // Pre-select template at plugin init time
+  const template = await selectTemplate(config, input.directory);
+
+  // Skip if no matching template
   if (!template) {
+    return {};
+  }
+
+  // Check if template is just ${command} (no-op)
+  if (template === "${command}") {
     return {};
   }
 
