@@ -6,3 +6,4 @@
  */
 
 export { BashWrapperPlugin } from "./bash-wrapper";
+export { DynSymPlugin } from "./dyn-sym";
