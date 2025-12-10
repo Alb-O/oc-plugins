@@ -5,14 +5,26 @@ Enables OpenCode to discover and search files in external directories by creatin
 ## How It Works
 
 1. **On plugin initialization**, creates a `.sym` directory in your project's worktree root
-2. **Adds `.sym/` to local git exclude** (`.git/info/exclude`) - this avoids modifying your tracked `.gitignore`
-3. **Symlinks in `.sym/` are followed** by OpenCode's ripgrep-based file discovery (via `--follow` flag)
+2. **Adds `.sym/` to local git exclude** (`.git/info/exclude`) - keeps `git status` clean
+3. **Before ripgrep-based tools run** (`read`, `grep`, `glob`, `list`), creates a temporary `.ignore` file with `!/.sym/` negation pattern
+4. **After those tools complete**, removes the `.ignore` file to avoid git artifacts
+5. **Symlinks in `.sym/` are followed** by OpenCode's ripgrep (via `--follow` flag)
 
 This allows the AI agent to discover, search, and read files in directories outside your project, such as:
 - Shared libraries or SDKs
 - Reference implementations
 - Documentation repos
 - Monorepo sibling packages
+
+## Why the Temporary .ignore File?
+
+OpenCode uses ripgrep for file discovery, which respects `.git/info/exclude`. This creates a conflict:
+- We want `.sym` hidden from `git status` (via `.git/info/exclude`)
+- We want `.sym` visible to ripgrep
+
+The solution: ripgrep also reads `.ignore` files, and negation patterns (`!pattern`) override exclusions. By temporarily creating `.ignore` with `!/.sym/` during ripgrep tool calls, we get both:
+- Clean `git status` (no `.sym` showing as untracked)
+- Full visibility to the AI agent
 
 ## Usage
 
@@ -21,6 +33,7 @@ This allows the AI agent to discover, search, and read files in directories outs
 The plugin automatically:
 - Creates `.sym/` if it doesn't exist
 - Configures git to ignore `.sym/` locally
+- Manages `.ignore` file lifecycle during tool calls
 - Logs existing symlinks on startup
 
 ### Managing Symlinks
@@ -90,16 +103,17 @@ OpenCode uses ripgrep with the following relevant flags:
 - `--hidden` - Includes hidden directories (like `.sym`)
 - `--glob=!.git/*` - Excludes `.git` directory
 
-This means:
-- Files in `.sym/` subdirectories **are discoverable** by the agent
-- The agent can search, glob, and read files through the symlinks
-- Circular symlinks are handled safely by ripgrep
+Ripgrep also respects:
+- `.gitignore` - Standard git ignore
+- `.git/info/exclude` - Local git exclude (where we hide `.sym`)
+- `.ignore` - Ripgrep-specific ignore (where we negate with `!/.sym/`)
 
 ## Limitations
 
 - **Target must exist** when adding a symlink
 - **Broken symlinks** are detected but not auto-cleaned
 - **Git worktrees** are supported (`.git` file instead of directory)
+- **Concurrent tool calls** are handled via callID tracking
 
 ## Future Enhancements
 
