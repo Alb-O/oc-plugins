@@ -6,7 +6,7 @@
 }:
 
 mkBunDerivation {
-  pname = "oc-plugins";
+  pname = "opencodium";
   version = "1.0.0";
   src = src;
   bunNix = bunNix;

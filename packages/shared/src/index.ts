@@ -1,5 +1,5 @@
 /**
- * @oc-plugins/shared
+ * @opencodium/shared
  * 
  * Shared utilities for OpenCode plugins.
  */

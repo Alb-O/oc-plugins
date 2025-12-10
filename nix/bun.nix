@@ -25,19 +25,19 @@
     url = "https://registry.npmjs.org/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz";
     hash = "sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==";
   };
-  "@oc-plugins/auto-worktree" = copyPathToStore ./packages/auto-worktree;
-  "@oc-plugins/bash-wrapper" = copyPathToStore ./packages/bash-wrapper;
-  "@oc-plugins/dyn-sym" = copyPathToStore ./packages/dyn-sym;
-  "@oc-plugins/git-narration" = copyPathToStore ./packages/git-narration;
-  "@oc-plugins/shared" = copyPathToStore ./packages/shared;
-  "@opencode-ai/plugin@1.0.138" = fetchurl {
-    url = "https://registry.npmjs.org/@opencode-ai/plugin/-/plugin-1.0.138.tgz";
-    hash = "sha512-xCewBoo3oqCoI9IUMpXHay/Z/pm0sUUwM4wyteXH3bPTA8+Tc7r4FVjEyCeQcNqvg/W+3SerS1Tj5gwzJ2sdTw==";
+  "@opencode-ai/plugin@1.0.141" = fetchurl {
+    url = "https://registry.npmjs.org/@opencode-ai/plugin/-/plugin-1.0.141.tgz";
+    hash = "sha512-JRrAhGXdUqGgH050+pfz6O7Y+QVoCWZA8apzoizvC0t3SWEUeZUXQOZLwTZIoNPtitxK7pvUylJ+gHg/6h5n8Q==";
   };
-  "@opencode-ai/sdk@1.0.138" = fetchurl {
-    url = "https://registry.npmjs.org/@opencode-ai/sdk/-/sdk-1.0.138.tgz";
-    hash = "sha512-9vXmpiAVVrhMZ3YNr7BGScyULFLyN0vnRx7iCDtN5qQDKxtsdQcXSQCz35XiVyD3A8lH5KOf5Zn0ByLYXuNeFQ==";
+  "@opencode-ai/sdk@1.0.141" = fetchurl {
+    url = "https://registry.npmjs.org/@opencode-ai/sdk/-/sdk-1.0.141.tgz";
+    hash = "sha512-eQ9jnPFLiAIJK7+HfvaHuYVDFyZGjeDZTVGHnc6GhDSu/e6H4JmNMLfZjZ7cAWEhQFcMO36BVIBUT2UI10Y3RQ==";
   };
+  "@opencodium/auto-worktree" = copyPathToStore ./packages/auto-worktree;
+  "@opencodium/bash-wrapper" = copyPathToStore ./packages/bash-wrapper;
+  "@opencodium/dyn-sym" = copyPathToStore ./packages/dyn-sym;
+  "@opencodium/git-narration" = copyPathToStore ./packages/git-narration;
+  "@opencodium/shared" = copyPathToStore ./packages/shared;
   "@types/bun@1.3.4" = fetchurl {
     url = "https://registry.npmjs.org/@types/bun/-/bun-1.3.4.tgz";
     hash = "sha512-EEPTKXHP+zKGPkhRLv+HI0UEX8/o+65hqARxLy8Ov5rIxMBPNTjeZww00CIihrIQGEQBYg+0roO5qOnS/7boGA==";

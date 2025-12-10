@@ -1,5 +1,5 @@
 {
-  "name": "@oc-plugins/auto-worktree",
+  "name": "@opencodium/auto-worktree",
   "version": "0.1.0",
   "description": "OpenCode plugin that isolates agent file operations via git worktrees",
   "type": "module",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9",
-    "@oc-plugins/shared": "^0.1.0",
+    "@opencodium/shared": "^0.1.0",
     "simple-git": "^3.30.0"
   },
   "peerDependencies": {
@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/oc-plugins",
+    "url": "https://github.com/your-org/opencodium",
     "directory": "packages/auto-worktree"
   }
 }

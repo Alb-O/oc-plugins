@@ -1,5 +1,5 @@
 import type { Plugin } from "@opencode-ai/plugin";
-import { loadConfig } from "@oc-plugins/shared";
+import { loadConfig } from "@opencodium/shared";
 import { setupWorktree, getWorktreeContext } from "./worktree";
 import { wrapToolArgs, shouldWrapTool } from "./wrapper";
 import { isGitRepo } from "./git";

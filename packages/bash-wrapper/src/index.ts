@@ -1,5 +1,5 @@
 import type { Plugin } from "@opencode-ai/plugin";
-import { loadConfig } from "@oc-plugins/shared";
+import { loadConfig } from "@opencodium/shared";
 import { applyTemplate } from "./template";
 import { evaluateCondition, type Condition } from "./condition";
 

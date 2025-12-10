@@ -1,5 +1,5 @@
 {
-  "name": "oc-plugins",
+  "name": "opencodium",
   "version": "0.1.0",
   "description": "A collection of miscellaneous OpenCode plugins. Worktrees, commit automation, external directory symlinks, and more.",
   "private": true,

@@ -1,6 +1,6 @@
-# oc-plugins
+# opencodium
 
-A collection of miscellaneous OpenCode plugins. Worktrees, commit automation, external directory symlinks, and more.
+A collection of OpenCode plugins and skills. Plugins provide core functionality like worktrees, commit automation, and external directory symlinks. Skills are specialized tools for specific tasks.
 
 ## Packages
 
@@ -14,19 +14,23 @@ A collection of miscellaneous OpenCode plugins. Worktrees, commit automation, ex
 
 **shared** provides `loadConfig()`, which searches `.opencode/{filename}` in the project root then falls back to `~/.config/opencode/{filename}`. Other plugins use this for consistent configuration loading.
 
+## Skills
+
+[**affinity-extractor**](skills/affinity-extractor/) extracts data and assets from Affinity v3 (.af) files using specialized scripts.
+
 ## Usage
 
 Install from npm:
 
 ```bash
-npm install @oc-plugins/auto-worktree
+npm install @opencodium/auto-worktree
 ```
 
 Configure OpenCode to load the plugin in your `.opencode/config.json`:
 
 ```json
 {
-  "plugins": ["@oc-plugins/auto-worktree"]
+  "plugins": ["@opencodium/auto-worktree"]
 }
 ```
 
@@ -40,4 +44,4 @@ bun run build
 bun run test
 ```
 
-The monorepo uses bun workspaces. Each package under `packages/` builds independently and publishes to npm under the `@oc-plugins` scope.
+The monorepo uses bun workspaces. Each package under `packages/` builds independently and publishes to npm under the `@opencodium` scope. Skills under `skills/` are standalone tools for specific use cases.
