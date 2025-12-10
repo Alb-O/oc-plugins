@@ -50,7 +50,10 @@
           ];
 
           shellHook = ''
-            bun install --frozen-lockfile
+            # Only run install in interactive shells to avoid noise in automated commands
+            if [ -t 0 ]; then
+              bun install --frozen-lockfile
+            fi
           '';
         };
       });
