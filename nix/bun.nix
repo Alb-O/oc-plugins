@@ -39,7 +39,6 @@
   "@opencodium/git-narration" = copyPathToStore ./packages/git-narration;
   "@opencodium/nix-develop" = copyPathToStore ./packages/nix-develop;
   "@opencodium/shared" = copyPathToStore ./packages/shared;
-  "@opencodium/skills" = copyPathToStore ./packages/skills;
   "@types/bun@1.3.4" = fetchurl {
     url = "https://registry.npmjs.org/@types/bun/-/bun-1.3.4.tgz";
     hash = "sha512-EEPTKXHP+zKGPkhRLv+HI0UEX8/o+65hqARxLy8Ov5rIxMBPNTjeZww00CIihrIQGEQBYg+0roO5qOnS/7boGA==";
@@ -56,10 +55,6 @@
     url = "https://registry.npmjs.org/@types/node/-/node-25.0.0.tgz";
     hash = "sha512-rl78HwuZlaDIUSeUKkmogkhebA+8K1Hy7tddZuJ3D0xV8pZSfsYGTsliGUol1JPzu9EKnTxPC4L1fiWouStRew==";
   };
-  "argparse@1.0.10" = fetchurl {
-    url = "https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz";
-    hash = "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==";
-  };
   "bun-types@1.3.4" = fetchurl {
     url = "https://registry.npmjs.org/bun-types/-/bun-types-1.3.4.tgz";
     hash = "sha512-5ua817+BZPZOlNaRgGBpZJOSAQ9RQ17pkwPD0yR7CfJg+r8DgIILByFifDTa+IPDDxzf5VNhtNlcKqFzDgJvlQ==";
@@ -72,53 +67,13 @@
     url = "https://registry.npmjs.org/diff/-/diff-8.0.2.tgz";
     hash = "sha512-sSuxWU5j5SR9QQji/o2qMvqRNYRDOcBTgsJ/DeCf4iSN4gW+gNMXM7wFIP+fdXZxoNiAnHUTGjCr+TSWXdRDKg==";
   };
-  "esprima@4.0.1" = fetchurl {
-    url = "https://registry.npmjs.org/esprima/-/esprima-4.0.1.tgz";
-    hash = "sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==";
-  };
-  "extend-shallow@2.0.1" = fetchurl {
-    url = "https://registry.npmjs.org/extend-shallow/-/extend-shallow-2.0.1.tgz";
-    hash = "sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==";
-  };
-  "gray-matter@4.0.3" = fetchurl {
-    url = "https://registry.npmjs.org/gray-matter/-/gray-matter-4.0.3.tgz";
-    hash = "sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==";
-  };
-  "ignore@7.0.5" = fetchurl {
-    url = "https://registry.npmjs.org/ignore/-/ignore-7.0.5.tgz";
-    hash = "sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==";
-  };
-  "is-extendable@0.1.1" = fetchurl {
-    url = "https://registry.npmjs.org/is-extendable/-/is-extendable-0.1.1.tgz";
-    hash = "sha512-5BMULNob1vgFX6EjQw5izWDxrecWK9AM72rugNr0TFldMOi0fj6Jk+zeKIt0xGj4cEfQIJth4w3OKWOJ4f+AFw==";
-  };
-  "js-yaml@3.14.2" = fetchurl {
-    url = "https://registry.npmjs.org/js-yaml/-/js-yaml-3.14.2.tgz";
-    hash = "sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==";
-  };
-  "kind-of@6.0.3" = fetchurl {
-    url = "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz";
-    hash = "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==";
-  };
   "ms@2.1.3" = fetchurl {
     url = "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz";
     hash = "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==";
   };
-  "section-matter@1.0.0" = fetchurl {
-    url = "https://registry.npmjs.org/section-matter/-/section-matter-1.0.0.tgz";
-    hash = "sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==";
-  };
   "simple-git@3.30.0" = fetchurl {
     url = "https://registry.npmjs.org/simple-git/-/simple-git-3.30.0.tgz";
     hash = "sha512-q6lxyDsCmEal/MEGhP1aVyQ3oxnagGlBDOVSIB4XUVLl1iZh0Pah6ebC9V4xBap/RfgP2WlI8EKs0WS0rMEJHg==";
-  };
-  "sprintf-js@1.0.3" = fetchurl {
-    url = "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz";
-    hash = "sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==";
-  };
-  "strip-bom-string@1.0.0" = fetchurl {
-    url = "https://registry.npmjs.org/strip-bom-string/-/strip-bom-string-1.0.0.tgz";
-    hash = "sha512-uCC2VHvQRYu+lMh4My/sFNmF2klFymLX1wHJeXnbEJERpV/ZsVuonzerjfrGpIGF7LBVa1O7i9kjiWvJiFck8g==";
   };
   "typescript@5.9.3" = fetchurl {
     url = "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz";
