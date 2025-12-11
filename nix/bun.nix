@@ -84,6 +84,10 @@
     url = "https://registry.npmjs.org/gray-matter/-/gray-matter-4.0.3.tgz";
     hash = "sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==";
   };
+  "ignore@7.0.5" = fetchurl {
+    url = "https://registry.npmjs.org/ignore/-/ignore-7.0.5.tgz";
+    hash = "sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==";
+  };
   "is-extendable@0.1.1" = fetchurl {
     url = "https://registry.npmjs.org/is-extendable/-/is-extendable-0.1.1.tgz";
     hash = "sha512-5BMULNob1vgFX6EjQw5izWDxrecWK9AM72rugNr0TFldMOi0fj6Jk+zeKIt0xGj4cEfQIJth4w3OKWOJ4f+AFw==";
