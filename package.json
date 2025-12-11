@@ -15,6 +15,7 @@
     "clean": "rm -rf packages/*/dist",
     "publish:all": "bun run build && bun run publish:packages",
     "publish:packages": "for pkg in packages/*; do (cd $pkg && npm publish --access public); done",
+    "publish:package": "cd packages/$PKG && npm publish --access public",
     "postinstall": "bun2nix -o nix/bun.nix"
   },
   "type": "module",

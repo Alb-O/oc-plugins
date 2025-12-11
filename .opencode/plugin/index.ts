@@ -5,4 +5,4 @@
  * OpenCode automatically loads all named exports matching the Plugin type.
  */
 
-export { BashWrapperPlugin as default } from "../../packages/bash-wrapper/src/index.ts";
+export { SkillsPlugin as default } from "../../packages/skills/src/index.ts";

@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/opencodium",
+    "url": "https://github.com/Alb-O/opencodium",
     "directory": "packages/auto-worktree"
   }
 }
