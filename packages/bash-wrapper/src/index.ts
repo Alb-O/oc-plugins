@@ -49,7 +49,7 @@ async function selectTemplate(
 /**
  * Plugin that wraps all bash commands using a configurable template.
  */
-export const BashWrapperPlugin: Plugin = async (input) => {
+const BashWrapperPlugin: Plugin = async (input) => {
   const config = await loadPluginConfig<BashWrapperConfig>(pkg.name, input.directory);
 
   if (!config) {
@@ -88,3 +88,5 @@ export const BashWrapperPlugin: Plugin = async (input) => {
     },
   };
 };
+
+export default BashWrapperPlugin;

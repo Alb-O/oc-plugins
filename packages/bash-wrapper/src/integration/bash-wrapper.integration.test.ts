@@ -7,7 +7,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 
-import { BashWrapperPlugin, type BashWrapperConfig } from "../index";
+import BashWrapperPlugin, { type BashWrapperConfig } from "../index";
 import { applyTemplate } from "../template";
 import { evaluateCondition } from "../condition";
 

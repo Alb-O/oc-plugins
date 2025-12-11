@@ -3,16 +3,9 @@ import { loadPluginConfig } from "@opencodium/shared";
 import { createEditTool } from "./edit";
 import { createWriteTool } from "./write";
 import { takeNote } from "./notes";
-import { captureBeforeBash, commitAfterBash, clearSnapshot } from "./bash-tracking";
+import { captureBeforeBash, commitAfterBash } from "./bash-tracking";
 import { type GitNarrationConfig, defaultConfig } from "./config";
 import pkg from "../package.json";
-
-export { createEditTool, editTool } from "./edit";
-export { createWriteTool, writeTool } from "./write";
-export { commitFile, isGitRepo, getGitRoot, type CommitResult } from "./git";
-export { setNote, takeNote, type Note } from "./notes";
-export { captureBeforeBash, commitAfterBash, clearSnapshot } from "./bash-tracking";
-export { type GitNarrationConfig, defaultConfig } from "./config";
 
 /**
  * Git Narration Plugin
@@ -26,7 +19,7 @@ export { type GitNarrationConfig, defaultConfig } from "./config";
  * - strictCommit: fail if not in repo or commit fails (default: false)
  * - trackBash: commit file changes made by bash commands (default: true)
  */
-export const GitNarrationPlugin: Plugin = async (input) => {
+const GitNarrationPlugin: Plugin = async (input) => {
   const fileConfig = await loadPluginConfig<GitNarrationConfig>(pkg.name, input.directory);
   const config: GitNarrationConfig = { ...defaultConfig, ...fileConfig };
 

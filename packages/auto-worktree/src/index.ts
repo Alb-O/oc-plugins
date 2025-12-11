@@ -1,17 +1,10 @@
 import type { Plugin } from "@opencode-ai/plugin";
 import { loadPluginConfig } from "@opencodium/shared";
-import { setupWorktree, getWorktreeContext } from "./worktree";
+import { setupWorktree } from "./worktree";
 import { wrapToolArgs, shouldWrapTool } from "./wrapper";
 import { isGitRepo } from "./git";
 import { type AutoWorktreeConfig, defaultConfig } from "./config";
 import pkg from "../package.json";
-
-export { setupWorktree, getWorktreeContext } from "./worktree";
-export { wrapToolArgs, shouldWrapTool } from "./wrapper";
-export { generateIdentity, getWorktreeName, type AgentIdentity } from "./identity";
-export { setSessionWorktree, getSessionWorktree, clearSessionWorktree, hasSessionWorktree } from "./session";
-export { isGitRepo, getGitRoot, ensureBranchExists, worktreeAdd, worktreeRemove, listWorktrees, worktreeExists } from "./git";
-export { type AutoWorktreeConfig, defaultConfig } from "./config";
 
 /**
  * Auto-Worktree Plugin
@@ -33,7 +26,7 @@ export { type AutoWorktreeConfig, defaultConfig } from "./config";
  * - baseDir: directory for OpenCode artifacts (default: ".opencode")
  * - worktreesDir: subdirectory for worktrees (default: "worktrees")
  */
-export const AutoWorktreePlugin: Plugin = async (input) => {
+const AutoWorktreePlugin: Plugin = async (input) => {
   const fileConfig = await loadPluginConfig<AutoWorktreeConfig>(pkg.name, input.directory);
   const config: Required<AutoWorktreeConfig> = { ...defaultConfig, ...fileConfig };
 

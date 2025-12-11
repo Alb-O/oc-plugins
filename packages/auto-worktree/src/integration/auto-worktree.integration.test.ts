@@ -13,7 +13,7 @@ import {
   clearSessionWorktree,
   listWorktrees,
   worktreeRemove,
-} from "../index";
+} from "../public";
 import { defaultConfig } from "../config";
 
 const execAsync = promisify(exec);
